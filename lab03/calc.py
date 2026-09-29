@@ -1,3 +1,7 @@
 a = float(input("Введите первое число: "))
 b = float(input("Введите второе число: "))
-print("Сумма:", a+b)
+d=input()
+if d == '+':
+	print("Сумма:", a+b)
+elif d== '-':
+	print('Разность', a-b)
