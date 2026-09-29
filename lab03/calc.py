@@ -7,3 +7,5 @@ elif d== '-':
 	print('Разность', a-b)
 elif d== '*':
 	print('Умножение', a*b)
+elif d== '/':
+	print('Деление', a/b)
