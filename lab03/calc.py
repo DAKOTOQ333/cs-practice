@@ -5,3 +5,5 @@ if d == '+':
 	print("Сумма:", a+b)
 elif d== '-':
 	print('Разность', a-b)
+elif d== '*':
+	print('Умножение', a*b)
