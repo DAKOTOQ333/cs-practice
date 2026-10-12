@@ -62,3 +62,18 @@ def warmest_city(records: list[dict]) -> str:
         means,
         key=lambda city: (-means[city], city),
     )
+def read_valid(lines: list[str]) -> list[dict]:
+    records = []
+
+    for line in lines:
+        if not line.strip():
+            continue
+
+        try:
+            record = parse_record(line)
+        except ValueError:
+            continue
+
+        records.append(record)
+
+    return records
