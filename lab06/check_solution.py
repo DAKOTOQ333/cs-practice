@@ -8,9 +8,11 @@ def main():
     assert count_by_extension(paths) == {"pdf": 1, "txt": 1, "png": 1, "": 1}
     assert count_by_extension([]) == {}
     assert count_by_extension(["archive.tar.gz", ".gitignore", "PHOTO.JPG", "a.jpg"]) == {
-        "gz": 1, "gitignore": 1, "jpg": 2
+        "gz": 1, "": 1, "jpg": 2
     }
     assert count_by_extension(["folder.v1/Makefile", "folder.txt/name."]) == {"": 2}
+    assert count_by_extension([".gitignore", "config/.env", "..hidden"]) == {"": 3}
+    assert count_by_extension([".config.JSON", "config/.env.local"]) == {"json": 1, "local": 1}
     assert deepest_path(paths) == "docs/img/logo.png"
     assert deepest_path(["x/y/z.txt", "a/b/c.txt"]) == "a/b/c.txt"
     assert deepest_path([]) == ""
@@ -27,7 +29,7 @@ def main():
     assert human_size(1024**3) == "1.0 ГБ"
     assert human_size(1024**4) == "1.0 ТБ"
     assert human_size(1024**5) == "1024.0 ТБ"
-    print("Все 20 проверок пройдены.")
+    print("Все 22 проверки пройдены.")
 
 
 if __name__ == "__main__":

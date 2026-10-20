@@ -2,10 +2,10 @@
 
 
 def count_by_extension(paths: list[str]) -> dict[str, int]:
-    """Подсчитать расширения по последней точке в имени файла."""
+    """Подсчитать расширения; начальные точки имени не задают расширение."""
     counts = {}
     for path in paths:
-        filename = path.rsplit("/", 1)[-1]
+        filename = path.rsplit("/", 1)[-1].lstrip(".")
         extension = filename.rsplit(".", 1)[-1].lower() if "." in filename else ""
         counts[extension] = counts.get(extension, 0) + 1
     return counts
