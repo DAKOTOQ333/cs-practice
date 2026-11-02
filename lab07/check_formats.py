@@ -19,14 +19,14 @@ def main():
     }
     assert parse_settings(["# только комментарий", " ", "name: Азов # город"]) == {"name": "Азов"}
     assert parse_settings(["rate: 3,5 # с запятой", "enabled: yes", "disabled: no"]) == {
-        "rate": "3,5", "enabled": True, "disabled": False
+        "rate": 3.5, "enabled": True, "disabled": False
     }
     assert parse_settings([]) == {}
     assert parse_settings(["a: -12", "b: 3.5", "c: false", "d: текст"]) == {
         "a": -12, "b": 3.5, "c": False, "d": "текст"
     }
     assert parse_settings(["values:", " - 12", " - 3,5", " - yes", " - no", " - город"]) == {
-        "values": [12, "3,5", True, False, "город"]
+        "values": [12, 3.5, True, False, "город"]
     }
     assert parse_settings(["empty:", "title: Отчёт", "url: https://example.org"]) == {
         "empty": [], "title": "Отчёт", "url": "https://example.org"
@@ -46,7 +46,8 @@ def main():
     assert merge_by_key([{"город": "Азов"}], extra) == [{"город": "Азов"}]
     assert records_to_json([{"б": 2, "а": 1}]) == '[\n  {\n    "а": 1,\n    "б": 2\n  }\n]'
     assert records_to_json([]) == "[]"
-    print("Все 22 проверки пройдены.")
+    assert parse_settings(['name: "Азов"', "code: '001'"]) == {"name": "Азов", "code": "001"}
+    print("Все 23 проверки пройдены.")
 
 
 if __name__ == "__main__":

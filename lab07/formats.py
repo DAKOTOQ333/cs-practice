@@ -18,6 +18,8 @@ def csv_to_records(text: str) -> list[dict]:
 def _parse_value(value: str):
     """Преобразовать логическое или числовое значение, иначе оставить строку."""
     value = value.strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in ("\"", "'" ):
+        return value[1:-1]
     if value.lower() in ("true", "yes"):
         return True
     if value.lower() in ("false", "no"):
@@ -27,7 +29,7 @@ def _parse_value(value: str):
     except ValueError:
         pass
     try:
-        return float(value)
+        return float(value.replace(",", "."))
     except ValueError:
         return value
 
