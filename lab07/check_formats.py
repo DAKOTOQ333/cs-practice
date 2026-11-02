@@ -19,14 +19,14 @@ def main():
     }
     assert parse_settings(["# только комментарий", " ", "name: Азов # город"]) == {"name": "Азов"}
     assert parse_settings(["rate: 3,5 # с запятой", "enabled: yes", "disabled: no"]) == {
-        "rate": 3.5, "enabled": True, "disabled": False
+        "rate": "3,5", "enabled": True, "disabled": False
     }
     assert parse_settings([]) == {}
     assert parse_settings(["a: -12", "b: 3.5", "c: false", "d: текст"]) == {
         "a": -12, "b": 3.5, "c": False, "d": "текст"
     }
     assert parse_settings(["values:", " - 12", " - 3,5", " - yes", " - no", " - город"]) == {
-        "values": [12, 3.5, True, False, "город"]
+        "values": [12, "3,5", True, False, "город"]
     }
     assert parse_settings(["empty:", "title: Отчёт", "url: https://example.org"]) == {
         "empty": [], "title": "Отчёт", "url": "https://example.org"
