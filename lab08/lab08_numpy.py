@@ -66,3 +66,45 @@ print("Форма:", fragment.shape)
 corner = matrix[-2:, -2:]
 print("Правый нижний блок:\n", corner)
 print("Форма:", corner.shape)
+
+# Задание 5. Изменение сразу нескольких элементов присваиванием срезу.
+print("\nЗадание 5")
+vector = np.array([10, 20, 30, 40, 50])
+vector[1:4] = 0
+print("Пример с вектором:", vector)
+small_matrix = np.arange(1, 10).reshape(3, 3)
+small_matrix[0, :] = -1
+small_matrix[1:, 1:] = 9
+print("Пример с матрицей:\n", small_matrix)
+
+# copy() создаёт независимые данные: изменение копии не меняет оригинал.
+# Простое присваивание changed_hours = hours создало бы вторую ссылку
+# на тот же массив, поэтому для сохранения hours нужна именно копия.
+changed_hours = hours.copy()
+changed_hours[2:5] = 99
+changed_hours[::2] = -1
+print("Изменённый hours:", changed_hours)
+print("Исходный hours:", hours)
+
+changed_matrix = matrix.copy()
+changed_matrix[1, :] = 0
+changed_matrix[:, -1] = -1
+changed_matrix[1:4, 1:4] = 100
+print("Изменённая матрица:\n", changed_matrix)
+print("Исходная матрица:\n", matrix)
+
+# Задание 6. reshape сохраняет количество и порядок элементов.
+numbers = np.arange(12)
+table = numbers.reshape(3, 4)
+transposed = table.T
+print("\nЗадание 6")
+print("numbers:\n", numbers)
+print("Форма numbers:", numbers.shape)
+print("table:\n", table)
+print("Форма table:", table.shape)
+print("transposed:\n", transposed)
+print("Форма transposed:", transposed.shape)
+
+# reshape(3, 4) работает: в массиве 12 элементов и 3 * 4 == 12.
+# reshape(5, 3) вызовет ValueError: форма требует 15 элементов, а их 12.
+# Транспонирование меняет строки и столбцы местами: (3, 4) -> (4, 3).
